@@ -1,15 +1,13 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+    <div>111111</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'IndexHeader'
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
 
 </style>
