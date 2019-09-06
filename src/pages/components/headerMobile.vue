@@ -1,0 +1,101 @@
+<template>
+  <div class="hidden-sm-and-up top">
+    <div class="header" v-show="showHeader" :style="opacityStyle">
+      <span class="title">那纯瑞 | <span class="small">西安电子科技大学</span></span>
+      <i :class="['el-icon-s-operation','menu',menuIconColorClass]" @click="handleShowMenu"></i>
+    </div>
+    <div  class="menu-list"  v-show="showHeader"  :style="opacityStyle">
+      <transition enter-active-class="animated bounceInDown" leave-active-class="animated bounceOutUp">
+        <menu-mobile v-if="showMenu"></menu-mobile>
+      </transition>
+    </div>
+
+  </div>
+</template>
+
+<script>
+import MenuMobile from './menuMobile'
+export default {
+  name: 'IndexHeaderMobile',
+  data () {
+    return {
+      showHeader: false,
+      showMenu: false,
+      menuIconColorClass: 'white',
+      opacityStyle: {
+        opacity: 0
+      }
+    }
+  },
+  components: {
+    MenuMobile
+  },
+  methods: {
+    handleShowMenu () {
+      this.showMenu = !this.showMenu
+      this.menuIconColorClass = this.showMenu ? 'blue' : 'white'
+    },
+    handleScroll () {
+      const scrollTop = document.documentElement.scrollTop
+      let opacity = 0
+      if (scrollTop > 100) {
+        this.showHeader = true
+        opacity = opacity < 1 ? (scrollTop - 100) / 300 : 1
+      } else {
+        this.showHeader = false
+      }
+      this.opacityStyle = { opacity }
+    }
+  },
+  activated () {
+    this.showHeader = false
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  deactivated () {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+  @import "~style/mixins.styl"
+  .top
+    position fixed
+    width 100%
+    z-index 4
+    .header
+      width 100%
+      line-height 1rem
+      font-size .32rem
+      color #fff
+      background #3f424b
+      z-index 3
+      .title
+        display block
+        width: 65%;
+        padding 0 .4rem
+        ellipsis()
+        .small
+          font-size .26rem
+      .menu
+        position absolute
+        top 0
+        right .4rem
+        line-height 1rem
+        font-size .5rem
+        transition color 1.5s
+      .white
+        color #fff
+      .blue
+        color #66b1ff
+      .bounceInUP
+        width 100%
+        position fixed
+        top 1rem
+      .bounceOutDown
+        width 100%
+        position absolute
+        top 1rem
+    .menu-list
+      z-index 2
+</style>
