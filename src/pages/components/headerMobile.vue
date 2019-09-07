@@ -6,7 +6,7 @@
     </div>
     <div  class="menu-list"  v-show="showHeader"  :style="opacityStyle">
       <transition enter-active-class="animated bounceInDown" leave-active-class="animated bounceOutUp">
-        <menu-mobile v-if="showMenu"></menu-mobile>
+        <menu-mobile v-if="showMenu"  v-click-out-side="handleCloseMenu"></menu-mobile>
       </transition>
     </div>
 
@@ -35,16 +35,40 @@ export default {
       this.showMenu = !this.showMenu
       this.menuIconColorClass = this.showMenu ? 'blue' : 'white'
     },
+    handleCloseMenu () {
+      this.showMenu = false
+      this.menuIconColorClass = 'white'
+    },
     handleScroll () {
       const scrollTop = document.documentElement.scrollTop
       let opacity = 0
       if (scrollTop > 100) {
         this.showHeader = true
-        opacity = opacity < 1 ? (scrollTop - 100) / 300 : 1
+        opacity = opacity < 1 ? (scrollTop - 100) / 200 : 1
       } else {
         this.showHeader = false
       }
       this.opacityStyle = { opacity }
+    }
+  },
+  directives: {
+    clickOutSide: {
+      bind: function (el, binding, vnode) {
+        function documentHandler (e) {
+          if (el.contains(e.target)) {
+            return false
+          }
+          if (binding.expression) {
+            binding.value(e)
+          }
+        }
+        el._vueClickOutSide_ = documentHandler
+        document.addEventListener('click', el._vueClickOutSide_)
+      },
+      unbind: function (el, binding) {
+        document.removeEventListener('click', el._vueClickOutSide_)
+        delete el._vueClickOutSide_
+      }
     }
   },
   activated () {
