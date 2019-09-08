@@ -4,9 +4,9 @@
       <span class="title">那纯瑞 | <span class="small">西安电子科技大学</span></span>
       <i :class="['el-icon-s-operation','menu',menuIconColorClass]" @click="handleShowMenu"></i>
     </div>
-    <div  class="menu-list"  v-show="showHeader"  :style="opacityStyle">
+    <div  class="menu-list" :style="opacityStyle">
       <transition enter-active-class="animated bounceInDown" leave-active-class="animated bounceOutUp">
-        <menu-mobile v-if="showMenu"  v-click-out-side="handleCloseMenu"></menu-mobile>
+        <menu-mobile v-if="showMenu" v-click-out-side="handleCloseMenu"></menu-mobile>
       </transition>
     </div>
 

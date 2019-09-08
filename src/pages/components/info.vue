@@ -68,12 +68,12 @@ export default {
             ''
         }, {
           icon: 'iconicon_Favorite',
-          projectDesc: '仿去哪网:<a href="" target="_blank">仿去哪网</a><br/>' +
+          projectDesc: '仿去哪网:<a href="https://ncr7777.github.io/qunar/index.html" target="_blank">仿去哪网</a> <span style="color: red">(网速较慢)</span><br/>' +
             'Vue,Vuex,Vue-Router,Axios,swiper,stylus等<br/>' +
             '取消默认样式、适配移动端，路由配置，组件化开发，轮播效果，图标分页，组件间传值，keep-alive滚动事件，全局事件解绑等'
         }, {
           icon: 'iconicon_Favorite',
-          projectDesc: '页面特效:<a href="https://ncr7777.github.io" target="_blank">请使用电脑访问</a> <span style="color: red">(部分不适配手机)</span><br/>' +
+          projectDesc: '页面特效:<a href="https://ncr7777.github.io/pages.html" target="_blank">请使用电脑访问</a> <span style="color: red">(部分不适配手机)</span><br/>' +
             'html,css等<br/>' +
             'css3动画，flex布局，box-shadow阴影等'
         }, {
@@ -91,10 +91,10 @@ export default {
         myInfo: '技能掌握',
         children: [{
           icon: 'iconicon_Call',
-          desc: '电话 18629488674 | 18845155191'
+          desc: 'html'
         }, {
           icon: 'iconicon_Email',
-          desc: '邮箱 <a href="mailto: ncr0119@163.com">ncr0119@163.com</a>'
+          desc: 'css'
         }]
       }]
     }
