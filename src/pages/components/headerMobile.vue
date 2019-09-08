@@ -6,7 +6,7 @@
     </div>
     <div  class="menu-list" :style="opacityStyle">
       <transition enter-active-class="animated bounceInDown" leave-active-class="animated bounceOutUp">
-        <menu-mobile v-if="showMenu" v-click-out-side="handleCloseMenu"></menu-mobile>
+        <menu-mobile v-show="clickShowMenu && showMenu" v-click-out-side="handleCloseMenu"></menu-mobile>
       </transition>
     </div>
 
@@ -21,6 +21,8 @@ export default {
     return {
       showHeader: false,
       showMenu: false,
+      clickShowMenu: false,
+      num: 0,
       menuIconColorClass: 'white',
       opacityStyle: {
         opacity: 0
@@ -32,12 +34,21 @@ export default {
   },
   methods: {
     handleShowMenu () {
+      if (!this.showMenu) {
+        this.num = 1
+      }
       this.showMenu = !this.showMenu
-      this.menuIconColorClass = this.showMenu ? 'blue' : 'white'
+      this.menuIconColorClass = this.clickShowMenu && this.showMenu ? 'blue' : 'white'
     },
     handleCloseMenu () {
-      this.showMenu = false
-      this.menuIconColorClass = 'white'
+      if (this.num === 1) {
+        this.clickShowMenu = true
+      } else {
+        this.showMenu = false
+        this.clickShowMenu = false
+      }
+      this.num = 0
+      this.menuIconColorClass = this.clickShowMenu && this.showMenu ? 'blue' : 'white'
     },
     handleScroll () {
       const scrollTop = document.documentElement.scrollTop
