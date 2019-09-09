@@ -6,8 +6,12 @@
         <index-header-pc></index-header-pc>
       </el-header>
       <el-main>
-        <index-info></index-info>
+        <index-info-mobile></index-info-mobile>
+        <index-info-pc></index-info-pc>
       </el-main>
+      <el-footer>
+        <index-footer></index-footer>
+      </el-footer>
     </el-container>
   </div>
 </template>
@@ -15,7 +19,9 @@
 <script>
 import IndexHeaderMobile from './components/headerMobile'
 import IndexHeaderPc from './components/headerPc'
-import IndexInfo from './components/info'
+import IndexInfoMobile from './components/infoMobile'
+import IndexFooter from './components/footer'
+import IndexInfoPc from './components/infoPc'
 export default {
   name: 'Index',
   data () {
@@ -25,15 +31,20 @@ export default {
   components: {
     IndexHeaderMobile,
     IndexHeaderPc,
-    IndexInfo
+    IndexInfoMobile,
+    IndexFooter,
+    IndexInfoPc
   }
 }
 </script>
 
 <style lang="stylus" scoped>
   .el-header
-    height 1rem !important
+    height 0 !important
     padding 0
   .el-main
+    padding 0
+  .el-footer
+    height 0 !important
     padding 0
 </style>

@@ -9,7 +9,6 @@
         <menu-mobile v-show="clickShowMenu && showMenu" v-click-out-side="handleCloseMenu"></menu-mobile>
       </transition>
     </div>
-
   </div>
 </template>
 
@@ -94,16 +93,19 @@ export default {
 
 <style lang="stylus" scoped>
   @import "~style/mixins.styl"
+  @import "~style/variables.styl"
   .top
     position fixed
     width 100%
     z-index 4
     .header
       width 100%
+      height 0
+      padding-bottom 1rem
       line-height 1rem
       font-size .32rem
       color #fff
-      background #3f424b
+      background $bgColor
       z-index 3
       .title
         display block

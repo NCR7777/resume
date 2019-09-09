@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="hidden-sm-and-up">
     <div :class="photoClass">
         <div class="my-photo animated zoomIn">
           <div class="photo"></div>
@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'IndexInfo',
+  name: 'IndexInfoMobile',
   data () {
     return {
       swiperOption: {
@@ -187,7 +187,7 @@ export default {
         }, {
           icon: 'iconicon_Favorite',
           projectDesc: '二次开发ecshop:<a href="https://www.kuailehaigou.com" target="_blank">拾贝E购</a> <span style="color: red">(请勿下单)</span><br/>' +
-            'PHP+阿里云Ecs+宝塔面板等<br/>' +
+            'PHP+阿里云ECS+宝塔面板等<br/>' +
             '修复商家入驻页面跳转bug，按照需求删除无用信息以及部分内容的修改，域名备案，SSL证书布置等'
         }, {
           icon: 'iconicon_Favorite',
@@ -248,6 +248,7 @@ export default {
 
 <style lang="stylus" scoped>
   @import "~style/mixins.styl"
+  @import "~style/variables.styl"
   .my-photo >>>
   .photo
     width 100%
@@ -279,7 +280,7 @@ export default {
     display flex
     padding .1rem .1rem
     margin  .15rem .1rem
-    background #f5f5f5
+    background $contentBgColor
     border-radius .1rem
   .item-normal-desc
     padding-left .2rem
@@ -310,6 +311,7 @@ export default {
     text-align center
     ellipsis()
   .about-me-new
+    margin-top 1rem
     padding-top 3%
     overflow hidden
     .my-photo
@@ -319,7 +321,7 @@ export default {
       background #fff
       overflow hidden
       border-radius 1.5rem
-      box-shadow 0 0 .22rem #333333
+      box-shadow 0 0 .22rem $bgColor
     .name
       display block
       width 3.5rem
@@ -330,8 +332,9 @@ export default {
       background burlywood
       color black
       border-radius .5rem
-      box-shadow 0 0 .1rem #333333 inset
+      box-shadow 0 0 .1rem $bgColor inset
   .about-me-old
+    margin-top 1rem
     padding-top 3%
     overflow hidden
     .my-photo
@@ -341,7 +344,7 @@ export default {
       background #fff
       overflow hidden
       border-radius 1rem
-      box-shadow 0 0 .22rem #333333
+      box-shadow 0 0 .22rem $bgColor
     .name
       display block
       width 2.5rem
@@ -352,5 +355,5 @@ export default {
       background burlywood
       color black
       border-radius .5rem
-      box-shadow 0 0 .1rem #333333 inset
+      box-shadow 0 0 .1rem $bgColor inset
 </style>
