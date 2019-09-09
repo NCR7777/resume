@@ -13,6 +13,8 @@ import 'element-ui/lib/theme-chalk/display.css'
 import 'style/reset/reset.css'
 import 'style/reset/border.css'
 import 'style/iconfont/iconfont.css'
+import 'style/iconfont/iconfont.js'
+import 'style/iconfont/icon.css'
 import animate from 'animate.css'
 
 Vue.config.productionTip = false

@@ -11,11 +11,23 @@
           <div class="info-title-desc">{{item.myInfo}}</div>
         </div>
         <ul class="item">
-          <li class="item-desc" v-for="(itemChild, index) of item.children" :key="index">
-            <span :class="['iconfont',itemChild.icon]"></span>
-            <span class="item-normal-desc" v-if="itemChild.desc" v-html="itemChild.desc">{{itemChild.desc}}</span>
-            <span class="item-project-desc" v-if="itemChild.projectDesc" v-html="itemChild.projectDesc">{{itemChild.projectDesc}}</span>
-          </li>
+            <li class="item-desc" v-for="(itemChild, index) of item.children" :key="index">
+              <div class="icon-svg" v-if="itemChild.iconSvg">
+                <swiper :options="swiperOption">
+                  <swiper-slide v-for="(page, index) of pages" :key="index">
+                    <div class="icon-svg-item" v-for="(itemChildIcon, index) of page" :key="index">
+                      <div class="icon-svg-item-iconName"
+                            v-html="itemChildIcon.iconName">{{itemChildIcon.iconName}}</div>
+                      <div class="icon-svg-item-skillDesc">{{itemChildIcon.skillDesc}}</div>
+                    </div>
+                  </swiper-slide>
+                  <div class="swiper-pagination" slot="pagination"></div>
+                </swiper>
+              </div>
+              <span v-if="itemChild.icon" :class="['iconfont',itemChild.icon]"></span>
+              <span class="item-normal-desc" v-if="itemChild.desc" v-html="itemChild.desc">{{itemChild.desc}}</span>
+              <span class="item-project-desc" v-if="itemChild.projectDesc" v-html="itemChild.projectDesc">{{itemChild.projectDesc}}</span>
+            </li>
         </ul>
       </div>
     </div>
@@ -27,6 +39,14 @@ export default {
   name: 'IndexInfo',
   data () {
     return {
+      swiperOption: {
+        pagination: '.swiper-pagination',
+        autoplay: 5000,
+        autoplayDisableOnInteraction: false,
+        mousewheelControl: true,
+        observeParents: true,
+        loop: true
+      },
       myName: '那纯瑞',
       screenHeight: document.documentElement.clientHeight - 50,
       timer: false,
@@ -50,13 +70,101 @@ export default {
           desc: '西安电子科技大学 | 电子商务 | 本科应届'
         }, {
           icon: 'iconicon_Folder',
-          desc: '期望职位:web前端开发工程师(深圳)'
+          desc: '期望职位:<span style="color: red">web前端开发工程师(深圳)</span>'
         }, {
           icon: 'icongithub',
           desc: '我的Github:<a href="https://github.com/NCR7777" target="_blank">https://github.com/NCR7777</a>'
         }, {
           icon: 'iconblogger',
           desc: '我的博客:<a href="http://www.ncrlhym.cn" target="_blank">http://www.ncrlhym.cn</a>'
+        }]
+      }, {
+        myInfo: '技能掌握',
+        children: [{
+          iconSvg: [{
+            iconName: '<svg class="icon" aria-hidden="true">' +
+                '  <use xlink:href="#iconVue"></use>' +
+              '</svg>',
+            skillDesc: 'Vue'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconHTML"></use>' +
+              '</svg>',
+            skillDesc: 'HTML5'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconCSS"></use>' +
+              '</svg>',
+            skillDesc: 'CSS3'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconJavaScript"></use>' +
+              '</svg>',
+            skillDesc: 'JavaScript'
+          }, {
+            iconName: '<img src="/static/images/es6.jpg" alt="ES6" style="width: .8rem">',
+            skillDesc: 'ES6'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#icongit"></use>' +
+              '</svg>',
+            skillDesc: 'Git'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#icongitlab"></use>' +
+              '</svg>',
+            skillDesc: 'GitLab'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconjQuery"></use>' +
+              '</svg>',
+            skillDesc: 'jQuery'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconMySQL"></use>' +
+              '</svg>',
+            skillDesc: 'MySQL'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconNodejs"></use>' +
+              '</svg>',
+            skillDesc: 'Nodejs'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconBootstrap"></use>' +
+              '</svg>',
+            skillDesc: 'Bootstrap'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconAdobe-Photoshop"></use>' +
+              '</svg>',
+            skillDesc: 'PhotoShop'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconwebstorm"></use>' +
+              '</svg>',
+            skillDesc: 'WebStorm'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconAdobe-Dreamweaver"></use>' +
+              '</svg>',
+            skillDesc: 'Dreamweaver'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconMicrosoft-Word"></use>' +
+              '</svg>',
+            skillDesc: 'Word'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconMicrosoft-Powerpoint"></use>' +
+              '</svg>',
+            skillDesc: 'Powerpoint'
+          }, {
+            iconName: '<svg class="icon" aria-hidden="true">' +
+              '  <use xlink:href="#iconMicrosoft-Excel"></use>' +
+              '</svg>',
+            skillDesc: 'Excel'
+          }]
         }]
       }, {
         myInfo: '项目作品',
@@ -87,15 +195,6 @@ export default {
             'html,css,js,jquery等<br/>' +
             '轮播图，css3动画等'
         }]
-      }, {
-        myInfo: '技能掌握',
-        children: [{
-          icon: 'iconicon_Call',
-          desc: 'html'
-        }, {
-          icon: 'iconicon_Email',
-          desc: 'css'
-        }]
       }]
     }
   },
@@ -106,6 +205,19 @@ export default {
       } else {
         this.photoClass = 'about-me-new'
       }
+    }
+  },
+  computed: {
+    pages () {
+      const pages = []
+      this.aboutMe[2].children[0].iconSvg.forEach((item, index) => {
+        const page = Math.floor(index / 8)
+        if (!pages[page]) {
+          pages[page] = []
+        }
+        pages[page].push(item)
+      })
+      return pages
     }
   },
   mounted () {
@@ -176,6 +288,27 @@ export default {
     padding-left .2rem
   .item-desc-info
     color black
+  .swiper-container
+    height 0
+    padding-bottom 54%
+  .swiper-pagination
+    position absolute
+    bottom -.1rem
+  .icon-svg
+    width 100%
+  .icon-svg-item
+    overflow hidden
+    float left
+    width 25%
+    height 0
+    padding-bottom 25%
+  .icon-svg-item-iconName
+    margin-top .15rem
+    font-size 2.8em
+    text-align center
+  .icon-svg-item-skillDesc
+    text-align center
+    ellipsis()
   .about-me-new
     padding-top 3%
     overflow hidden
