@@ -1,6 +1,6 @@
 <template>
     <div class="hidden-xs-only header" :style="{
-    background: headerBg}">
+    background: headerBg, lineHeight: headerHeight}">
       <el-row>
         <el-col :sm="1" :md="3" :lg="4" :xl="4">&nbsp;</el-col>
         <el-col :sm="22" :md="18" :lg="16" :xl="16">
@@ -20,6 +20,8 @@ export default {
     return {
       screenHeight: document.documentElement.clientHeight,
       headerBg: '',
+      headerHeight: '70px',
+      timer: false,
       menuList: [{
         desc: '关于我',
         url: ''
@@ -39,11 +41,14 @@ export default {
   },
   methods: {
     handleScroll () {
+      this.screenHeight = document.documentElement.clientHeight
       const scrollTop = document.documentElement.scrollTop
-      if (scrollTop >= this.screenHeight - 70) {
+      if (scrollTop >= this.screenHeight - 50) {
         this.headerBg = '#3f424b'
+        this.headerHeight = '50px'
       } else {
         this.headerBg = ''
+        this.headerHeight = '70px'
       }
     }
   },
@@ -61,9 +66,9 @@ export default {
   .header
     position fixed
     width 100%
-    line-height 70px
     color white
-    transition background 1s
+    transition all .8s
+    z-index 99
     .name
       font-size .4rem
       color $pcFontColor
