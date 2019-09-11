@@ -15,12 +15,13 @@
     <div id="next" class="content" :style="{height: screenHeight + 'px'}">
       <div class="wrapper">
         <el-row class="my-info">
-          <el-col :span="24" class="info-title">基本资料</el-col>
+          <el-col :span="24" style="height: 4%"> </el-col>
+          <el-col :span="24" class="info-title" :style="{height: infoTitleHeight}"><span>基本资料</span></el-col>
           <el-col :span="2" class="my-info-item" :style="{height: infoItemHeight}">&nbsp;</el-col>
           <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">
             <div class="info-item">
               <span :class="['iconfont',myInfoList[0].icon,'info-icon']"></span>
-              <span class="info-title">{{myInfoList[0].title}}</span>
+              <span class="info-item-title">{{myInfoList[0].title}}</span>
               <span class="info-desc" v-html="myInfoList[0].desc">{{myInfoList[0].desc}}</span>
             </div>
           </el-col>
@@ -28,7 +29,7 @@
           <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">
             <div class="info-item">
               <span :class="['iconfont',myInfoList[1].icon,'info-icon']"></span>
-              <span class="info-title">{{myInfoList[1].title}}</span>
+              <span class="info-item-title">{{myInfoList[1].title}}</span>
               <span class="info-desc" v-html="myInfoList[1].desc">{{myInfoList[1].desc}}</span>
             </div>
           </el-col>
@@ -37,7 +38,7 @@
           <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">
             <div class="info-item">
               <span :class="['iconfont',myInfoList[2].icon,'info-icon']"></span>
-              <span class="info-title">{{myInfoList[2].title}}</span>
+              <span class="info-item-title">{{myInfoList[2].title}}</span>
               <span class="info-desc" v-html="myInfoList[2].desc">{{myInfoList[2].desc}}</span>
             </div>
           </el-col>
@@ -45,7 +46,7 @@
           <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">
             <div class="info-item">
               <span :class="['iconfont',myInfoList[3].icon,'info-icon']"></span>
-              <span class="info-title">{{myInfoList[3].title}}</span>
+              <span class="info-item-title">{{myInfoList[3].title}}</span>
               <span class="info-desc" v-html="myInfoList[3].desc">{{myInfoList[3].desc}}</span>
             </div>
           </el-col>
@@ -61,6 +62,7 @@ export default {
   name: 'IndexInfoPc',
   data () {
     return {
+      infoTitleHeight: '6%',
       infoItemHeight: '',
       screenHeight: document.documentElement.clientHeight,
       screenWidth: document.documentElement.clientWidth,
@@ -81,7 +83,7 @@ export default {
       }, {
         icon: 'iconai-code',
         title: '程序人生',
-        desc: '<br>HTML/CSS/JS: 5000+行<br>Vue: 1000+行<br>Node.Js: 1500+行<br>Java/JSP: 2000+行'
+        desc: '<br>HTML/CSS/JS: 8000+行<br>Vue: 2000+行<br>Node.Js: 2000+行<br>Java/JSP: 2000+行'
       }]
     }
   },
@@ -89,7 +91,7 @@ export default {
     scrollToNext () {
       let element = document.getElementById('next')
       element.scrollIntoView({
-        block: 'end',
+        block: 'start',
         behavior: 'smooth'
       })
     },
@@ -154,7 +156,6 @@ export default {
           height 100%
           width 100%
           .info-title
-            height 10%
             text-align center
             font-size 30px
             color $pcFontColor
@@ -174,8 +175,10 @@ export default {
                 font-size 130px
                 color #aaa
                 transition color .5s
-              .info-title
+              .info-item-title
                 margin-top 10px
+                color $pcFontColor
+                font-weight bolder
                 display block
                 font-size 25px
               .info-desc
