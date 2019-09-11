@@ -18,19 +18,37 @@
           <el-col :span="24" class="info-title">基本资料</el-col>
           <el-col :span="2" class="my-info-item" :style="{height: infoItemHeight}">&nbsp;</el-col>
           <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">
-            <div>
-              <span :class="['iconfont',myInfoList[0].icon]"></span>
-              <span>{{myInfoList[0].title}}</span>
-              <span>{{myInfoList[0].desc}}</span>
+            <div class="info-item">
+              <span :class="['iconfont',myInfoList[0].icon,'info-icon']"></span>
+              <span class="info-title">{{myInfoList[0].title}}</span>
+              <span class="info-desc" v-html="myInfoList[0].desc">{{myInfoList[0].desc}}</span>
             </div>
           </el-col>
           <el-col :span="2" class="my-info-item hidden-lg-and-up" :style="{height: infoItemHeight}">&nbsp;</el-col>
-          <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">dfasdfadsf</el-col>
+          <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">
+            <div class="info-item">
+              <span :class="['iconfont',myInfoList[1].icon,'info-icon']"></span>
+              <span class="info-title">{{myInfoList[1].title}}</span>
+              <span class="info-desc" v-html="myInfoList[1].desc">{{myInfoList[1].desc}}</span>
+            </div>
+          </el-col>
           <el-col :span="2" class="my-info-item hidden-lg-and-up" :style="{height: infoItemHeight}">&nbsp;</el-col>
           <el-col :span="2" class="my-info-item hidden-lg-and-up" :style="{height: infoItemHeight}">&nbsp;</el-col>
-          <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">dfasdfadsf</el-col>
+          <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">
+            <div class="info-item">
+              <span :class="['iconfont',myInfoList[2].icon,'info-icon']"></span>
+              <span class="info-title">{{myInfoList[2].title}}</span>
+              <span class="info-desc" v-html="myInfoList[2].desc">{{myInfoList[2].desc}}</span>
+            </div>
+          </el-col>
           <el-col :span="2" class="my-info-item hidden-lg-and-up" :style="{height: infoItemHeight}">&nbsp;</el-col>
-          <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">dfasdfadsf</el-col>
+          <el-col :sm="9" :md="9" :lg="5" :xl="5" class="my-info-item" :style="{height: infoItemHeight}">
+            <div class="info-item">
+              <span :class="['iconfont',myInfoList[3].icon,'info-icon']"></span>
+              <span class="info-title">{{myInfoList[3].title}}</span>
+              <span class="info-desc" v-html="myInfoList[3].desc">{{myInfoList[3].desc}}</span>
+            </div>
+          </el-col>
           <el-col :span="2" class="my-info-item" :style="{height: infoItemHeight}">&nbsp;</el-col>
         </el-row>
       </div>
@@ -51,20 +69,19 @@ export default {
       myInfoList: [{
         icon: 'iconicon_User',
         title: '个人信息',
-        desc: '那纯瑞 | 男 | 1999年1月19日\n' +
-          '西安电子科技大学 | 电子商务 | 本科应届'
+        desc: '<br>那纯瑞 | 男<br>1999年1月19日<br>西安电子科技大学<br>电子商务 | 本科应届'
       }, {
-        icon: '',
-        title: '',
-        desc: ''
+        icon: 'iconicon_Call',
+        title: '联系方式',
+        desc: '<br>电话<br>186-294-88674<br>邮箱<br><a href="mailto: ncr0119@163.com">ncr0119@163.com</a>'
       }, {
-        icon: '',
-        title: '',
-        desc: ''
+        icon: 'icongithub',
+        title: '个人网站',
+        desc: '<br>Github<br><a href="https://github.com/NCR7777" target="_blank">github.com/NCR7777</a><br>个人博客(无文章)<br><a href="http://www.ncrlhym.cn" target="_blank">www.ncrlhym.cn</a>'
       }, {
-        icon: '',
-        title: '',
-        desc: ''
+        icon: 'iconai-code',
+        title: '程序人生',
+        desc: '<br>HTML/CSS/JS: 5000+行<br>Vue: 1000+行<br>Node.Js: 1500+行<br>Java/JSP: 2000+行'
       }]
     }
   },
@@ -110,15 +127,9 @@ export default {
       }
     },
     screenWidth (val) {
-      if (!this.timerWidth) {
-        this.screenWidth = val
-        this.changeHeight()
-        this.timerWidth = true
-        let that = this
-        setTimeout(function () {
-          that.timerWidth = false
-        }, 200)
-      }
+      this.screenWidth = val
+      this.changeHeight()
+      console.log(this.screenWidth)
     }
   }
 }
@@ -131,9 +142,10 @@ export default {
     .content
       background linear-gradient(to bottom,#777,$bgColor)
       padding 0 30px
+      min-height 750px
       .wrapper
         height 80%
-        width 80%
+        width 90%
         position relative
         top 50%
         left 50%
@@ -148,11 +160,43 @@ export default {
             color $pcFontColor
             font-weight bolder
           .my-info-item
-            border 1px solid #000
-            background #25a4bb
+            text-align center
+            position relative
+            .info-item
+              overflow hidden
+              position absolute
+              top 50%
+              left 50%
+              transform translate(-50%, -50%)
+              .info-icon
+                margin 0 25px
+                display block
+                font-size 130px
+                color #aaa
+                transition color .5s
+              .info-title
+                margin-top 10px
+                display block
+                font-size 25px
+              .info-desc
+                margin-top 5px
+                display block
+                font-size 12px
+                font-weight normal
+                line-height 18px
+                letter-spacing 1px
+                color #ccc
+                transition all .5s
+              .info-desc:hover
+                font-size 14px
+                font-weight bolder
+                color $pcFontColor
+              .info-icon:hover
+                color $pcFontColor
     .picture
       background url("/static/images/intro-bg.jpg") no-repeat bottom center
       background-size cover
+      min-height 350px
       .title
         width 95%
         height 45px
